@@ -115,14 +115,15 @@ class RangeAnnotation<D> extends ChartBehavior<D> {
   }
 
   @override
-  int get hashCode => hashValues(
-      annotations,
-      defaultColor,
-      extendAxis,
-      defaultLabelAnchor,
-      defaultLabelDirection,
-      defaultLabelPosition,
-      defaultLabelStyleSpec,
-      labelPadding,
-      layoutPaintOrder);
+  int get hashCode => Object.hash(
+        annotations,
+        defaultColor,
+        extendAxis,
+        defaultLabelAnchor,
+        defaultLabelDirection,
+        defaultLabelPosition,
+        defaultLabelStyleSpec,
+        labelPadding,
+        layoutPaintOrder,
+      );
 }

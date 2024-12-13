@@ -24,9 +24,12 @@ import 'legend_layout.dart';
 abstract class LegendContentBuilder {
   const LegendContentBuilder();
 
-  Widget build(BuildContext context, common.LegendState legendState,
-      common.Legend legend,
-      {bool showMeasures});
+  Widget build(
+    BuildContext context,
+    common.LegendState legendState,
+    common.Legend legend, {
+    bool showMeasures,
+  });
 }
 
 /// Base strategy for building a legend content widget.
@@ -88,5 +91,8 @@ class TabularLegendContentBuilder extends BaseLegendContentBuilder {
   }
 
   @override
-  int get hashCode => hashValues(legendEntryLayout, legendLayout);
+  int get hashCode => Object.hash(
+        legendEntryLayout,
+        legendLayout,
+      );
 }

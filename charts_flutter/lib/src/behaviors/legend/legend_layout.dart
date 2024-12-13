@@ -101,8 +101,12 @@ class TabularLegendLayout implements LegendLayout {
       cellPadding == o.cellPadding;
 
   @override
-  int get hashCode => hashValues(
-      desiredMaxRows, desiredMaxColumns, isHorizontalFirst, cellPadding);
+  int get hashCode => Object.hash(
+        desiredMaxRows,
+        desiredMaxColumns,
+        isHorizontalFirst,
+        cellPadding,
+      );
 
   Widget _buildHorizontalFirst(List<Widget> legendEntries) {
     final maxColumns = (desiredMaxColumns == _noLimit)
@@ -147,8 +151,12 @@ class TabularLegendLayout implements LegendLayout {
       final rowChildren = rows[i].children;
       final padCount = columnCount - rowChildren.length;
       if (padCount > 0) {
-        rowChildren
-            .addAll(new Iterable<Padding>.generate(padCount, (_) => padWidget));
+        rowChildren.addAll(
+          new Iterable<Padding>.generate(
+            padCount,
+            (_) => padWidget,
+          ),
+        );
       }
     }
 
@@ -157,6 +165,8 @@ class TabularLegendLayout implements LegendLayout {
     // Flutter's documentation, but has to be used if the table is desired to
     // have a width that is tight on each column.
     return new Table(
-        children: rows, defaultColumnWidth: new IntrinsicColumnWidth());
+      children: rows,
+      defaultColumnWidth: new IntrinsicColumnWidth(),
+    );
   }
 }

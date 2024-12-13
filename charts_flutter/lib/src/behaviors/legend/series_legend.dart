@@ -288,18 +288,19 @@ class SeriesLegend<D> extends ChartBehavior<D> {
 
   @override
   int get hashCode {
-    return hashValues(
-        selectionModelType,
-        contentBuilder,
-        position,
-        outsideJustification,
-        insideJustification,
-        defaultHiddenSeries,
-        showMeasures,
-        legendDefaultMeasure,
-        measureFormatter,
-        secondaryMeasureFormatter,
-        entryTextStyle);
+    return Object.hash(
+      selectionModelType,
+      contentBuilder,
+      position,
+      outsideJustification,
+      insideJustification,
+      defaultHiddenSeries,
+      showMeasures,
+      legendDefaultMeasure,
+      measureFormatter,
+      secondaryMeasureFormatter,
+      entryTextStyle,
+    );
   }
 }
 
@@ -337,8 +338,9 @@ class _FlutterSeriesLegend<D> extends common.SeriesLegend<D>
 
   @override
   Widget build(BuildContext context) {
-    final hasSelection = legendState.legendEntries != null &&
-        legendState.legendEntries.any((entry) => entry.isSelected);
+    final hasSelection = legendState.legendEntries.any(
+      (entry) => entry.isSelected,
+    );
 
     // Show measures if [showMeasures] is true and there is a selection or if
     // showing measures when there is no selection.
@@ -358,7 +360,6 @@ class _FlutterSeriesLegend<D> extends common.SeriesLegend<D>
         break;
 
       case common.LegendTapHandling.none:
-      default:
         break;
     }
   }
